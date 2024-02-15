@@ -327,12 +327,12 @@ void flb_config_exit(struct flb_config *config)
     struct flb_cf *cf;
     struct flb_input_collector *collector;
 
-    if (config->log_file) {
-        flb_free(config->log_file);
-    }
-
     if (config->log) {
         flb_log_destroy(config->log, config);
+    }
+
+    if (config->log_file) {
+        flb_free(config->log_file);
     }
 
     if (config->parsers_file) {
