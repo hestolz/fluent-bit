@@ -318,6 +318,7 @@ endif()
 
 REGISTER_OUT_PLUGIN("out_pgsql")
 REGISTER_OUT_PLUGIN("out_retry")
+REGISTER_OUT_PLUGIN("out_scalyr_datasets")
 REGISTER_OUT_PLUGIN("out_skywalking")
 REGISTER_OUT_PLUGIN("out_slack")
 REGISTER_OUT_PLUGIN("out_splunk")
