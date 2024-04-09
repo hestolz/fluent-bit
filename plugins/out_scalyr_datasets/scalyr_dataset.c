@@ -647,5 +647,5 @@ struct flb_output_plugin out_scalyr_datasets_plugin = {
     /* for testing */
     .test_formatter.callback = cb_scalyr_dataset_format_test,
     /* Plugin flags */
-    .flags          = FLB_OUTPUT_NET | FLB_IO_OPT_TLS,
+    .flags          = FLB_OUTPUT_NET | FLB_IO_TLS,
 };
