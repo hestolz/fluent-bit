@@ -61,6 +61,12 @@ static int cb_scalyr_dataset_init(struct flb_output_instance *ins,
         flb_plg_warn(ins, "no bearer token set");
     }
 
+    ctx->session_id = flb_sds_create_size(40);
+    if (flb_utils_uuid_v4_gen(ctx->session_id) == -1) {
+        flb_scalyr_dataset_conf_destroy(ctx);
+        return -1;
+    }
+
     /*
      * This plugin instance uses the HTTP client interface, let's register
      * it debugging callbacks.
@@ -294,7 +300,7 @@ static inline int scalyr_dataset_format(const void *in_buf, size_t in_bytes,
 
     msgpack_pack_map(&mp_pck, 2);
     msgpack_pack_str_with_body(&mp_pck, "session", strlen("session"));
-    msgpack_pack_str_with_body(&mp_pck, "jklmcdxv7890usdfuhshjkdcv90dsv0", strlen("jklmcdxv7890usdfuhshjkdcv90dsv0"));
+    msgpack_pack_str_with_body(&mp_pck, ctx->session_id, strlen(ctx->session_id));
 
     msgpack_pack_str_with_body(&mp_pck, "events", strlen("events"));
     msgpack_pack_array(&mp_pck, nrecords);

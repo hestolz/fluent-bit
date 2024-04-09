@@ -48,6 +48,10 @@ struct flb_scalyr_dataset {
     /* Bearer Token */
     flb_sds_t bearer_token;
 
+
+    /* Session ID*/
+    flb_sds_t session_id;
+
     /* Token Auth */
     flb_sds_t auth_header;
 

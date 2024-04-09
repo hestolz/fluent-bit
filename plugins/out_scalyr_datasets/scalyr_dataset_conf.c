@@ -24,7 +24,7 @@
 #include "scalyr_dataset_conf.h"
 
 struct flb_scalyr_dataset *flb_scalyr_dataset_conf_create(struct flb_output_instance *ins,
-                                          struct flb_config *config)
+                                                          struct flb_config *config)
 {
     int ret;
     int io_flags = 0;
@@ -117,6 +117,9 @@ int flb_scalyr_dataset_conf_destroy(struct flb_scalyr_dataset *ctx)
 
     if (ctx->auth_header) {
         flb_sds_destroy(ctx->auth_header);
+    }
+    if (ctx->session_id) {
+        flb_sds_destroy(ctx->session_id);
     }
     if (ctx->u) {
         flb_upstream_destroy(ctx->u);
